@@ -1,31 +1,5 @@
 def executePipeline() {
     node {
-        stage('Checkout Repositories') {
-            script {
-                // Checkout o repositório do api-produto
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/stevenrezende/api-produto.git',
-                        credentialsId: 'github_login'
-                    ]]
-                ])
-                                
-
-                // Checkout o repositório do gatorpipeline
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/stevenrezende/gatorpipeline.git',
-                        credentialsId: 'github_login'
-                    ]]
-                ])
-  
-            }
-        }
-
         stage('Prepare Environment') {
             script {
                 // Verifica se o Docker está instalado e, se não estiver, instala o Docker
